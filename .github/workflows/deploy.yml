@@ -48,8 +48,8 @@ jobs:
         script: |
           docker stop shop3 || true   
           docker rm shop3 || true   
-          docker image rm gdj90/shop3:${{ github.run_number }} || true    
-          docker load -i shop3.tar   
-          docker run -d --name shop3 -p 8080:8080 \  
+          docker image rm gdj90/shop3:${{ github.run_number }} || true
+          docker load -i shop3.tar
+          docker run -d --name shop3 -p 8080:8080 \
             -v /home/ubuntu/upload:/app/upload \
             gdj90/shop3:${{ github.run_number }}
