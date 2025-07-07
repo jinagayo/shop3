@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{/layout/layout :: layout(~{::title}, ~{::body}, ~{::style})}">
+<head><meta charset="UTF-8">
+<title>주문 전 상품 목록 보기</title></head>
+<body><h2>배송지 정보</h2>
+<table class="w3-table">
+<tr><td width="30%">주문아이디</td>
+    <td width="70%" th:text="${session.loginUser.userid}"></td></tr>
+<tr><td width="30%">이름</td>
+    <td width="70%" th:text="${session.loginUser.username}"></td></tr>
+<tr><td width="30%">이메일</td>
+    <td width="70%" th:text="${email}"></td></tr>
+<tr><td width="30%">우편번호</td>
+    <td width="70%" th:text="${session.loginUser.postcode}"></td></tr>
+<tr><td width="30%">주소</td>
+    <td width="70%" th:text="${session.loginUser.address}"></td></tr>
+<tr><td width="30%">전화번호</td>
+    <td width="70%" th:text="${session.loginUser.phoneno}"></td></tr>
+</table>
+<h2>구매 상품 </h2>
+<table class="w3-table">
+ <tr><th>상품명</th><th>가격</th><th>수량</th><th>합계</th></tr>
+   <tr th:each="itemSet,stat : ${session.CART.itemSetList}">
+     <td th:text="${itemSet.item.name}"></td>
+     <td th:text="${itemSet.item.price}"></td>
+     <td th:text="${itemSet.quantity}"></td>
+     <td th:text="${itemSet.item.price *itemSet.quantity}"></td></tr>
+  <tr><td colspan="4" align="right">
+          총 구입 금액 : <span th:text="${session.CART.total}"></span>원</td></tr>
+  <tr><td colspan="4"><a href="end">확정하기</a>&nbsp;
+     <a href="../item/list">상품 목록</a>&nbsp;
+  </td></tr></table>
+  </body></html>
