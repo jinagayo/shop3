@@ -7,7 +7,7 @@ on:
     branches:
       - main
   
-#실행할 기능 설정 
+
 jobs:
   deploy:
     name: Deploy to EC2 with Docker  #Job의 이름
