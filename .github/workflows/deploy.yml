@@ -46,10 +46,10 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         script: |
-          docker stop shop3 || true   #기존 shop3 컨테이너 중지. 없으면 오류 무시
-          docker rm shop3 || true     #기존 shop3 컨테이너 제거. 없으면 오류 무시
-          docker image rm gdj90/shop3:${{ github.run_number }} || true     #기존 이미지 제거
-          docker load -i shop3.tar     #이미지 파일로 복원. 도커 이미지 생성
-          docker run -d --name shop3 -p 8080:8080 \     #도커 컨테이너 생성. 실행. 
+          docker stop shop3 || true   
+          docker rm shop3 || true   
+          docker image rm gdj90/shop3:${{ github.run_number }} || true    
+          docker load -i shop3.tar   
+          docker run -d --name shop3 -p 8080:8080 \  
             -v /home/ubuntu/upload:/app/upload \
             gdj90/shop3:${{ github.run_number }}
